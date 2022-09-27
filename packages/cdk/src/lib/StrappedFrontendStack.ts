@@ -60,6 +60,7 @@ export class StrappedFrontendStack extends cdk.Stack {
             defaultRootObject: 'index.html',
             defaultBehavior: {
                 origin:new cfo.S3Origin(bucket,{originAccessIdentity}),
+                viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             },
             certificate,
             domainNames:domainName?[domainName]:undefined
