@@ -29,6 +29,19 @@
                 "command": "npx cdk synth"
             }
         },
+        "diff": {
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies"
+                }
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "packages/cdk",
+                "command": "npx cdk diff"
+            }
+        },
         "bootstrap": {
             "dependsOn": [
                 {

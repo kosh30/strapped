@@ -49,10 +49,11 @@
     "dependencies": {
         "@iyio/ni18": "^0.0.15",
         "core-js": "^3.6.5",
-        "next": "12.2.5",
+        "next": "^12.2.5",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "regenerator-runtime": "0.13.7",
+        "serverless-http": "^3.1.0",
         "styled-jsx": "5.0.4",
         "tslib": "^2.3.0"
     }

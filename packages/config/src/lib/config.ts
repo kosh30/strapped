@@ -7,6 +7,7 @@ export interface StackConfig
     repoConnectionArn:string;
     apiDomain:string;
     frontendDomain:string;
+    frontendSsrDomain:string;
     emailAddress:string;
     awsProfile:string;
     awsRegion:string;
@@ -15,6 +16,8 @@ export interface StackConfig
     cdkStack:string;
     instanceVCpu:number;
     instanceMemoryMb:number;
+    enableFrontendStatic:boolean;
+    enableFrontendSsr:boolean;
 
 }
 
@@ -66,6 +69,7 @@ export const stackConfig:Readonly<StackConfig>=Object.freeze({
     repoConnectionArn:requireVar('repoConnectionArn',process.env.NX_REPO_CONNECTION_ARN),
     apiDomain:requireVar('apiDomain',process.env.NX_API_DOMAIN),
     frontendDomain:requireVar('frontendDomain',process.env.NX_FRONTEND_DOMAIN),
+    frontendSsrDomain:requireVar('frontendSsrDomain',process.env.NX_FRONTEND_SSR_DOMAIN,''),
     emailAddress:requireVar('emailAddress',process.env.NX_EMAIL_ADDRESS),
     awsProfile:requireVar('awsProfile',process.env.NX_AWS_PROFILE),
     awsRegion:requireVar('awsRegion',process.env.NX_AWS_REGION),
@@ -74,6 +78,8 @@ export const stackConfig:Readonly<StackConfig>=Object.freeze({
     cdkStack:requireVar('cdkStack',process.env.NX_CDK_STACK,'pipeline'),
     instanceVCpu:toInt(requireVar('instanceVCpu',process.env.NX_INSTANCE_V_CPU,'256')),
     instanceMemoryMb:toInt(requireVar('instanceMemoryMb',process.env.NX_INSTANCE_MEMORY_MB,'1024')),
+    enableFrontendStatic:toBool(requireVar('enableFrontendStatic',process.env.NX_ENABLE_FRONTEND_STATIC,'true')),
+    enableFrontendSsr:toBool(requireVar('enableFrontendSsr',process.env.NX_ENABLE_FRONTEND_SSR,'false')),
 });
 
 

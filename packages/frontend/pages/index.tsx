@@ -1,4 +1,9 @@
 import { stackConfig } from "@strapped/config";
+import path from 'path';
+
+// path.reslove is required for compiler to be happy. Don't ask why
+// https://github.com/nrwl/nx/issues/9017#issuecomment-1140066503
+path.resolve('./next.config.js');
 
 export function Index() {
     /*

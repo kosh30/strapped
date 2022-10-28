@@ -17,10 +17,13 @@ export class StrappedPipelineStack extends cdk.Stack {
         apiDomain,
         emailAddress,
         frontendDomain,
+        frontendSsrDomain,
         enableBackend,
         enableFrontend,
         instanceVCpu,
         instanceMemoryMb,
+        enableFrontendSsr,
+        enableFrontendStatic,
         ...props
     }: StrappedPipelineStackProps) {
         super(scope, id, props);
@@ -58,7 +61,10 @@ export class StrappedPipelineStack extends cdk.Stack {
             pipeline.addStage(new StrappedFrontendStage(this,`${stackName}FrontendStage-${branch}`,{
                 stackName,
                 branch,
-                frontendDomain
+                frontendDomain,
+                frontendSsrDomain,
+                enableFrontendSsr,
+                enableFrontendStatic
             }));
         }
 

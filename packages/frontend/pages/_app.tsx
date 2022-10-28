@@ -1,5 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+// serverless-http import required to prevent from being removed by tree shaking
+import 'serverless-http';
 import './styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {

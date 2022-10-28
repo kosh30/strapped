@@ -36,10 +36,23 @@
                 }
             }
         },
-        "build": {
+        "export": {
             "executor": "@nrwl/next:export",
             "options": {
                 "buildTarget": "frontend:pre-build:production"
+            }
+        },
+        "build": {
+            "dependsOn": [
+                {
+                    "target": "export",
+                    "projects": "self"
+                }
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "packages/frontend",
+                "command": "./build-serverless.sh"
             }
         },
         "test": {

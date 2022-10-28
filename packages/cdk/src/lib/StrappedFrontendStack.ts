@@ -9,17 +9,36 @@ import { Construct } from "constructs";
 // import * as efs from 'aws-cdk-lib/aws-efs';
 // import * as lambda from 'aws-cdk-lib/aws-lambda';
 // import * as secrets from 'aws-cdk-lib/aws-secretsmanager';
+import { createFunction } from './create-function';
 
 export interface StrappedFrontendStackProps
 {
     frontendDomain:string;
+    frontendSsrDomain:string;
+    enableFrontendStatic:boolean;
+    enableFrontendSsr:boolean;
 }
 
 export class StrappedFrontendStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props: StrappedFrontendStackProps & cdk.StackProps) {
         super(scope, id, props);
 
-        this.createWebSite('frontend',props.frontendDomain);
+        if(props.enableFrontendStatic){
+            this.createWebSite('frontend',props.frontendDomain);
+        }
+
+        if(props.enableFrontendSsr){
+            this.createServerlessWebSite('frontend'/* todo - add domain support ,props.frontendDomain||''*/)
+        }
+    }
+
+    createServerlessWebSite(name:string){
+
+        createFunction(this,`serverless-website-${name}`,{
+            createPublicUrl:true,
+            codeDistSourcePath:`packages/${name}/serverless`,
+            handler:'packages/frontend/server.handler',
+        })
     }
 
     createWebSite(name: string, domainName:string|null){
