@@ -25,7 +25,10 @@ switch(stackConfig.cdkStack){
 
     case 'frontend':
         new StrappedFrontendStack(app,`${stackConfig.stackName}Frontend-${stackConfig.branch}`,{
-            frontendDomain:stackConfig.frontendDomain
+            frontendDomain:stackConfig.frontendDomain,
+            frontendSsrDomain:stackConfig.frontendSsrDomain,
+            enableFrontendStatic:stackConfig.enableFrontendStatic,
+            enableFrontendSsr:stackConfig.enableFrontendSsr,
         });
         break;
 
