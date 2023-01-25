@@ -39,7 +39,7 @@ export class StrappedPipelineStack extends cdk.Stack {
                 // Where the source can be found
                 input: source,
 
-                installCommands:['npm ci','npx pathic-util -i -b .'],
+                installCommands:['yarn','npx pathic-util -i -b .'],
 
                 // Install dependencies, build and run cdk synth
                 commands: [`scripts/nx-run-with-env.sh branch-${branch} cdk:synth ${branch} 1`],
