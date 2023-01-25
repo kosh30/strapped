@@ -14,7 +14,7 @@ echo "Creating pipeline for ($BRANCH)"
 echo "Press Ctrl+C to cancel"
 sleep 5
 
-npm run install-all
+yarn install-all
 
 npx nx reset
 

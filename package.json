@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "install-all": "npm install && npx pathic-util -ik -b .",
+        "install-all": "yarn && npx pathic-util -ik -b .",
         "clean": "rm -rf cdk.out dist && npx pathic-util -u -b ."
     },
     "private": true,
