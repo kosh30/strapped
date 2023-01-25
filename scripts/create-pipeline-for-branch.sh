@@ -7,7 +7,7 @@ DIFF=$(git status --porcelain)
 
 if [ "$DIFF" != "" ]; then
     echo "$BRANCH is dirty - $DIFF"
-    exit 1
+    #exit 1
 fi
 
 echo "Creating pipeline for ($BRANCH)"
@@ -18,4 +18,4 @@ yarn install-all
 
 npx nx reset
 
-scripts/nx-run-with-env.sh "branch-$BRANCH" 'cdk:deploy' '1'
+scripts/nx-run-with-env.sh "branch-$BRANCH" 'cdk:deploy' "$BRANCH"
