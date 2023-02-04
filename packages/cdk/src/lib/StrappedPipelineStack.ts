@@ -29,7 +29,7 @@ export class StrappedPipelineStack extends cdk.Stack {
         super(scope, id, props);
 
         const source=pipelines.CodePipelineSource.connection(`${githubOwner}/${gitRepo}`,branch,{
-            connectionArn:repoConnectionArn
+            connectionArn:  
         });
 
         const pipeline = new pipelines.CodePipeline(this, `${stackName}Pipeline-${branch}`, {
@@ -39,7 +39,7 @@ export class StrappedPipelineStack extends cdk.Stack {
                 // Where the source can be found
                 input: source,
 
-                installCommands:['yarn','npx pathic-util -i -b .'],
+                installCommands:['npm install', 'npm ci','npx pathic-util -i -b .'],
 
                 // Install dependencies, build and run cdk synth
                 commands: [`scripts/nx-run-with-env.sh branch-${branch} cdk:synth ${branch} 1`],
